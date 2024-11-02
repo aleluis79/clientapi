@@ -1,0 +1,6 @@
+@clientapi_HostAddress = http://localhost:5000
+
+GET {{clientapi_HostAddress}}/home/ping
+Accept: application/json
+
+###
