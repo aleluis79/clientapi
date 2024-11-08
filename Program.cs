@@ -1,3 +1,4 @@
+using System.Net;
 using Polly;
 using TodoApp.Services;
 
@@ -20,7 +21,9 @@ builder.Services.AddHttpClient(
     {
         return Policy
             .Handle<HttpRequestException>()
-            .OrResult<HttpResponseMessage>(r => !r.IsSuccessStatusCode)
+            .OrResult<HttpResponseMessage>(r => 
+                            r.StatusCode == HttpStatusCode.RequestTimeout || 
+                            r.StatusCode == HttpStatusCode.GatewayTimeout) // Maneja errores de timeout
             .WaitAndRetryAsync(
                 3, // Número de reintentos
                 retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
