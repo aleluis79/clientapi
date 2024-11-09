@@ -4,3 +4,8 @@ GET {{clientapi_HostAddress}}/home/ping
 Accept: application/json
 
 ###
+
+GET {{clientapi_HostAddress}}/home/todos
+Accept: application/json
+
+###

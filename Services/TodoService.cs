@@ -24,7 +24,7 @@ public class TodoService : ITodoService
             var response = client.GetFromJsonAsync<List<TodoModel>>("todos").Result;
             return response ?? [];
         } catch (Exception ex) {
-            _logger.LogError("Error al obtener los todos: {Error}", ex);
+            _logger.LogError("Error al obtener los todos: {Error}", ex.Message);
         }
 
         return [];
